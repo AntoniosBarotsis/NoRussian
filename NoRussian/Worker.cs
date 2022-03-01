@@ -60,15 +60,15 @@ public class Worker
 
     private void SetEnvVariables()
     {
-        var retryDelay     = Environment.GetEnvironmentVariable("RetryDelay")     ?? "60";
+        var retryDelay = Environment.GetEnvironmentVariable("RetryDelay") ?? "60";
         var requestTimeout = Environment.GetEnvironmentVariable("RequestTimeout") ?? "15";
-        var threads        = Environment.GetEnvironmentVariable("Threads")        ?? "20";
-        var throttleAmount = Environment.GetEnvironmentVariable("Throttle")       ?? "5";
+        var threads = Environment.GetEnvironmentVariable("Threads") ?? "20";
+        var throttleAmount = Environment.GetEnvironmentVariable("Throttle") ?? "5";
 
-        _retryDelaySeconds        = int.Parse(retryDelay);
-        _requestTimeoutSeconds    = int.Parse(requestTimeout);
-        _threads                  = int.Parse(threads);
-        _throttleAmount           = int.Parse(throttleAmount);
+        _retryDelaySeconds = int.Parse(retryDelay);
+        _requestTimeoutSeconds = int.Parse(requestTimeout);
+        _threads = int.Parse(threads);
+        _throttleAmount = int.Parse(throttleAmount);
 
         var info = @$"
 Retry delay:     {_retryDelaySeconds}
@@ -88,7 +88,7 @@ Throttle:        {_throttleAmount}
     private async Task MakeRequest(string link)
     {
         Thread.Sleep(TimeSpan.FromSeconds(_throttleAmount));
-        
+
         var client = new HttpClient();
 
         client.Timeout = TimeSpan.FromSeconds(_requestTimeoutSeconds);
@@ -138,10 +138,9 @@ Throttle:        {_throttleAmount}
     {
         _action.Complete();
         _retry.Completion.Wait();
-        
+
         _action.Completion.Wait();
         _retry.Completion.Wait();
-        
     }
 
     public void Wait()

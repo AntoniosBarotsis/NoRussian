@@ -11,7 +11,10 @@ const string figlet = @"
 
 Console.WriteLine(figlet);
 
-var links = File.ReadAllLines(Directory.GetCurrentDirectory() + "/NoRussian/data.txt");
+
+var links =
+    Environment.GetEnvironmentVariable("Links")?.Split(";") ??
+    File.ReadAllLines(Directory.GetCurrentDirectory() + "/NoRussian/data.txt");
 
 var worker = new Worker(links.Length);
 
