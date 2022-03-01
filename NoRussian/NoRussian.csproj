@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+
+        <PublishTrimmed>true</PublishTrimmed>
+        <PublishSingleFile>true</PublishSingleFile>
+        <SelfContained>true</SelfContained>
+        <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+        <DebugType>none</DebugType>
+        <DebugSymbols>false</DebugSymbols>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <Configuration>release</Configuration>
+        <PackAsTool>true</PackAsTool>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Pastel" Version="3.0.0" />
+        <None Include="../README.md" Pack="true" PackagePath="\" />
+        <None Include="../Dockerfile"></None>
+    </ItemGroup>
+
+</Project>
